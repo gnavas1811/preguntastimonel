@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>Examen Timonel CUBA 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#0b1628;--card:#131f36;--card2:#1a2a45;--accent:#3b82f6;--accent2:#2563eb;--green:#22c55e;--red:#ef4444;--orange:#f59e0b;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--border:#1e3a5f;--radius:12px;--font:'Inter',system-ui,-apple-system,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;-webkit-tap-highlight-color:transparent}
+.ctr{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;font-weight:800;text-align:center;margin-bottom:4px;background:linear-gradient(135deg,#60a5fa,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub{text-align:center;color:var(--text2);font-size:.8rem;margin-bottom:16px}
+.sbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.st{flex:1;min-width:70px;background:var(--card);border-radius:var(--radius);padding:10px;text-align:center}
+.st .n{font-size:1.3rem;font-weight:700;line-height:1}
+.st .l{font-size:.65rem;color:var(--text2);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+.st.ok .n{color:var(--green)}.st.err .n{color:var(--red)}.st.pn .n{color:var(--orange)}
+.pbar{background:var(--card);border-radius:8px;height:8px;margin-bottom:16px;overflow:hidden}
+.pfill{height:100%;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--green));transition:width .4s ease}
+.cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.cb{padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:.75rem;font-family:var(--font);cursor:pointer;transition:all .2s;white-space:nowrap}
+.cb.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.cb .cnt{opacity:.6;margin-left:2px}
+.tabs{display:flex;gap:0;margin-bottom:16px;background:var(--card);border-radius:var(--radius);overflow:hidden}
+.tab{flex:1;padding:10px;text-align:center;font-size:.8rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text2);font-family:var(--font);transition:all .2s}
+.tab.on{background:var(--accent);color:#fff}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:12px;border:1px solid var(--border)}
+.chdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.qcat{font-size:.7rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.qnum{font-size:.7rem;color:var(--text3)}
+.qtxt{font-size:.95rem;line-height:1.5;margin-bottom:16px;font-weight:500}
+.mhint{font-size:.75rem;color:var(--orange);margin-bottom:12px;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:10px;border:2px solid var(--border);cursor:pointer;transition:all .2s;background:transparent;text-align:left;font-family:var(--font);font-size:.88rem;color:var(--text);line-height:1.4;width:100%}
+.opt:active{transform:scale(.98)}
+.opt .mk{width:22px;height:22px;min-width:22px;border-radius:50%;border:2px solid var(--text3);display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px;font-size:.7rem;font-weight:700}
+.opt.mu .mk{border-radius:5px}
+.opt.sel{border-color:var(--accent);background:rgba(59,130,246,.1)}
+.opt.sel .mk{border-color:var(--accent);background:var(--accent);color:#fff}
+.opt.ok{border-color:var(--green);background:rgba(34,197,94,.1)}
+.opt.ok .mk{border-color:var(--green);background:var(--green);color:#fff}
+.opt.wr{border-color:var(--red);background:rgba(239,68,68,.1)}
+.opt.wr .mk{border-color:var(--red);background:var(--red);color:#fff}
+.opt.ms{border-color:var(--orange);background:rgba(245,158,11,.08)}
+.opt.ms .mk{border-color:var(--orange);background:var(--orange);color:#fff}
+.opt.dis{pointer-events:none;opacity:.85}
+.exp{margin-top:16px;padding:14px;border-radius:10px;font-size:.85rem;line-height:1.5;border-left:3px solid var(--accent)}
+.exp.eok{background:rgba(34,197,94,.08);border-left-color:var(--green)}
+.exp.eer{background:rgba(239,68,68,.08);border-left-color:var(--red)}
+.exp.epa{background:rgba(245,158,11,.08);border-left-color:var(--orange)}
+.brow{display:flex;gap:8px;margin-top:16px}
+.btn{flex:1;padding:12px;border-radius:10px;border:none;font-family:var(--font);font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn:active{transform:scale(.97)}
+.bp{background:var(--accent);color:#fff}
+.bs{background:var(--card2);color:var(--text)}
+.bc{background:var(--green);color:#fff}
+.ans{margin-top:14px;padding:14px;background:var(--card2);border-radius:10px;font-size:.88rem;line-height:1.6;border-left:3px solid var(--accent)}
+.rbtn{width:100%;padding:14px;border-radius:10px;border:2px dashed var(--border);background:transparent;color:var(--accent);font-family:var(--font);font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:12px}
+.rbtn:hover{border-color:var(--accent);background:rgba(59,130,246,.05)}
+.ql{display:flex;flex-direction:column;gap:8px}
+.qi{display:flex;align-items:center;gap:10px;padding:12px;background:var(--card);border-radius:10px;cursor:pointer;transition:all .15s;border:1px solid var(--border)}
+.qi:active{transform:scale(.98)}
+.qi .ic{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;min-width:28px}
+.qi .ic.pd{background:var(--card2);color:var(--text3)}
+.qi .ic.gd{background:rgba(34,197,94,.15);color:var(--green)}
+.qi .ic.bd{background:rgba(239,68,68,.15);color:var(--red)}
+.qi .ic.sn{background:rgba(59,130,246,.15);color:var(--accent)}
+.qi .tx{flex:1;font-size:.82rem;line-height:1.3;color:var(--text2)}
+.qi .ar{color:var(--text3);font-size:.8rem}
+.rc{text-align:center;padding:30px 20px}
+.sc{font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--green),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sl{color:var(--text2);font-size:.9rem;margin-bottom:20px}
+.rb{display:flex;gap:20px;justify-content:center;margin-bottom:24px}
+.rb .it{text-align:center}
+.rb .it .v{font-size:1.5rem;font-weight:700}
+.rb .it .k{font-size:.7rem;color:var(--text2)}
+.rstb{background:var(--accent);color:#fff;border:none;padding:14px 32px;border-radius:var(--radius);font-family:var(--font);font-size:.9rem;font-weight:600;cursor:pointer}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:16px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;transition:all .2s;padding:0}
+.dot.dp{background:var(--card2)}.dot.dg{background:var(--green)}.dot.dr{background:var(--red)}.dot.dc{box-shadow:0 0 0 2px var(--accent);transform:scale(1.3)}
+.ft{text-align:center;padding:20px 0;color:var(--text3);font-size:.7rem}
+@media(max-width:380px){.ctr{padding:12px}.card{padding:14px}.qtxt{font-size:.9rem}}
+</style>
+</head>
+<body>
+<div class="ctr" id="app"></div>
+<script>
+// ===== DATA =====
+var Q=[
+// CONCEPTOS
+{id:"g01",c:"Conceptos",q:'"La OBRA VIVA es la parte del casco que, con respecto a la línea de flotación, está…"',o:["Arriba","Abajo","Ni arriba ni abajo","Arriba y abajo"],a:[1],x:"La obra viva (carena) es la parte sumergida, por debajo de la línea de flotación."},
+{id:"g08",c:"Conceptos",q:"Las crucetas son:",o:["Cabos que permiten regular la altura de la escota y braza de spinnaker","Cabos utilizados para amarrar un barco","Piezas del mástil que modifican el ángulo de trabajo de los obenques altos","Las ballenitas que se insertan en la baluma de algunas velas para darles rigidez"],a:[2],x:"Las crucetas son piezas laterales del mástil que separan los obenques altos para mejorar su ángulo de trabajo."},
+{id:"g10",c:"Conceptos",q:"¿Qué es la sección maestra?",o:["El plano imaginario que parte el barco por la mitad en el eje proa-popa","El plano imaginario que parte el barco según obra viva-obra muerta","El plano imaginario que parte el barco transversalmente en la manga máxima"],a:[2],x:"La sección maestra es la sección del barco correspondiente a la manga máxima."},
+{id:"g12",c:"Conceptos",q:"¿Cómo se llama el puño de una vela que está donde se unen el pujamen y la baluma?",o:["Escota","Driza","Amura"],a:[0],x:"El puño de escota es donde se unen pujamen y baluma."},
+{id:"g14",c:"Conceptos",q:"¿Cuál de los siguientes elementos NO es parte de una vela o está conectado a una vela?",o:["Matafiones","Ollaos","Battens","Mosqueteros","Lanitas"],a:[3],x:"Mosqueteros (mosquetones) son herrajes de conexión, no partes de la vela."},
+{id:"g15",c:"Conceptos",q:"¿Todos los barcos tienen quillote?",o:["Sí","No"],a:[1],x:"No. Algunos barcos tienen orza en lugar de quillote."},
+{id:"g16",c:"Conceptos",q:"¿Todos los barcos tienen orza?",o:["Sí","No"],a:[1],x:"No. Algunos barcos tienen quillote en lugar de orza."},
+{id:"g17",c:"Conceptos",q:"El quillote sirve para:",o:["Dar estabilidad","Evitar que el barco se vaya de ronza (desplazamiento lateral)","Dar estabilidad y evitar que el barco se vaya de ronza"],a:[2],x:"El quillote brinda resistencia lateral Y estabilidad (por su peso)."},
+{id:"g18",c:"Conceptos",q:"La orza sirve para:",o:["Dar estabilidad","Evitar que el barco se vaya de ronza (desplazamiento lateral)","Dar estabilidad y evitar que el barco se vaya de ronza"],a:[1],x:"La orza brinda SOLAMENTE resistencia lateral, NO estabilidad."},
+{id:"g20",c:"Conceptos",q:"¿Un barco con mástil apoyado en cubierta, tiene fogonadura?",o:["Sí","No"],a:[1],x:"No. La fogonadura es el agujero en cubierta por donde pasa un mástil pasante."},
+{id:"g21",c:"Conceptos",q:"¿Qué es la carlinga?",o:["La pieza que une los obenques con el casco","La pieza en donde se apoya el mástil","El agujero en cubierta por donde pasa un mástil pasante","La pieza que une la botavara con el mástil"],a:[1],x:"La carlinga es la pieza donde asienta la base del mástil."},
+{id:"g22",c:"Conceptos",q:"La roda es:",o:["La pieza que une el estay proel y la cubierta","El filo de la proa","La pieza que une los obenques con el casco","La unión de la pala del timón con el casco"],a:[1],x:"La roda es el filo de la proa del barco."},
+{id:"g23",c:"Conceptos",q:"¿Tienen los H19 guardamancebos?",o:["Sí","No"],a:[1],x:"No. El H19 es una embarcación de eslora pequeña (5,8 m) que no posee guardamancebos."},
+{id:"g25",c:"Conceptos",q:"¿Los H19 tienen relinga embutida de genoa?",o:["Sí","No"],a:[1],x:"No. En el H19 la genoa se sujeta al estay mediante mosquetones (hanks), no con relinga embutida."},
+{id:"g33",c:"Conceptos",q:"Defina chicote",o:["Gomón de pequeñas dimensiones","Extremo de un cabo","Tipo de aparejo de origen neocelandés","Cabo que se usa para atar la porción de mayor que deja de usarse al tomar un rizo"],a:[1],x:"Chicote es el extremo de un cabo."},
+{id:"g35",c:"Conceptos",q:"¿Cuál de las siguientes afirmaciones es la más correcta para mesana?",o:["Mástil de popa de un queche o ketch","Mástil de popa en un yawl","Mástil de popa en un cutter","A y B son correctas"],a:[3],x:"Mesana es el palo de popa tanto en un queche/ketch como en un yawl."},
+{id:"g36",c:"Conceptos",q:"¿Motón y mordaza son sinónimos?",o:["Sí","No"],a:[1],x:"No. El motón es una polea y la mordaza es una pieza que fija un cabo."},
+{id:"g37",c:"Conceptos",q:"¿Cuál de los siguientes tipos de aparejos tiene 3 palos?",o:["Yawl","Queche","Sloop","Ninguno de los anteriores"],a:[3],x:"Yawl y queche tienen 2 palos, sloop tiene 1. Ninguno tiene 3."},
+{id:"g38",c:"Conceptos",q:"¿Qué tipo de aparejo tienen los H19?",o:["Sloop a tope","Queche","Yawl","Sloop fraccionado"],a:[3],x:"El H19 es un sloop fraccionado (el estay de proa no llega al tope del mástil)."},
+{id:"g80",c:"Conceptos",q:"¿Qué es la limera?",o:["Pieza de unión de obenques con casco","Pieza de unión de estay popel con el casco","Tubo por donde pasa el eje del timón en barcos con timón pasante","Agujero en el cockpit para desagotar agua","Elemento de madera para tapar una esclusa dañada"],a:[2],x:"La limera es el tubo por donde pasa el eje del timón en barcos con timón pasante."},
+{id:"g81",c:"Conceptos",q:"¿Qué es un imbornal?",o:["Pieza de unión de obenques con casco","Pieza de unión de estay popel con el casco","Agujero para desagotar agua"],a:[2],x:"El imbornal es un agujero/abertura para desagotar agua del cockpit o cubierta."},
+{id:"g82",c:"Conceptos",q:"¿Qué es un espiche?",o:["Pieza de unión de obenques con casco","Pieza de unión de estay popel con el casco","Tubo por donde pasa el eje del timón","Agujero en el cockpit para desagotar agua","Elemento de madera para tapar un rumbo circular pequeño en un casco"],a:[4],x:"El espiche es un tapón de madera para sellar un rumbo (agujero) circular de pequeñas dimensiones en el casco."},
+{id:"g88",c:"Conceptos",q:"¿En qué sentido trabajan los molinetes?",o:["Horario","Antihorario"],a:[0],x:"Los molinetes (winches) trabajan en sentido horario."},
+{id:"g90",c:"Conceptos",q:"¿Qué es un cuarterón?",o:["Una carta que hace referencia a una zona particular, con mayor detalle","Cuarto de la rosa de los vientos","Unidad de peso de un barco","Unidad de distancia en cartografía"],a:[0],x:"Un cuarterón es una carta náutica de una zona particular con mayor nivel de detalle."},
+{id:"g91",c:"Conceptos",q:"¿Qué es el desplazamiento?",o:["Resistencia lateral de un barco","Peso del barco. Peso del volumen de agua que desplaza","Inercia de un barco","Cuando la proa del barco no es recta"],a:[1],x:"El desplazamiento es el peso del barco, equivalente al peso del volumen de agua que desplaza."},
+{id:"g92",c:"Conceptos",q:"¿Qué es la estropada?",o:["Vela que se enverga entre dos mástiles","Grosor de un cabo medido por su circunferencia","Maniobra de mal tiempo","Inercia de un barco"],a:[3],x:"La estropada es la inercia que lleva un barco."},
+{id:"g94",c:"Conceptos",q:"¿Qué es el veril de un canal?",o:["El borde de un canal","El lugar de inicio de un canal","El lugar de finalización de un canal","El punto de menor profundidad de un canal"],a:[0],x:"Los veriles son los bordes laterales de un canal navegable."},
+{id:"g95",c:"Conceptos",q:"¿Qué divide la línea de crujía?",o:["Al barco en dos partes iguales proa y popa","Al barco en dos partes iguales babor y estribor"],a:[1],x:"La línea de crujía divide el barco en babor y estribor."},
+{id:"g97",c:"Conceptos",q:"En términos náuticos, adujar un cabo es…",o:["Ajustarlo bien a la cornamusa","Estibarlo en su lugar","Unirlo mediante nudos o costuras","Darle vueltas cuidadosamente para que sea rápidamente reutilizable"],a:[3],x:"Adujar es enrollar un cabo cuidadosamente en forma circular (adujas)."},
+// MANIOBRA
+{id:"g11",c:"Maniobra",q:"¿Qué es ciar?",o:["El rumbo de máxima ceñida","Navegar hacia atrás","Navegar con una sola vela","Navegar escorando hacia barlovento"],a:[1],x:"Ciar (ciando) es navegar o moverse hacia atrás."},
+{id:"g13",c:"Maniobra",q:"En un barco navegando a un descuartelar, amurado a estribor, la banda de barlovento es:",o:["Babor","Estribor","Ninguna de las dos"],a:[1],x:"Amurado a estribor = el viento viene de estribor, por lo tanto estribor es barlovento."},
+{id:"g24",c:"Maniobra",q:"El tangón se usa cuando:",o:["Cuando se iza spinnaker","Cuando se toma un rizo","Cuando se navega en oreja de burro","Cuando se navega de ceñida"],a:[0,2],m:1,x:"El tangón se usa para izar el spinnaker Y cuando se navega en oreja de burro."},
+{id:"g26",c:"Maniobra",q:"¿Cuál de estos rumbos es más orzado?",o:["Por la aleta","A un largo"],a:[1],x:"A un largo está más cerca del viento (más orzado) que por la aleta."},
+{id:"g27",c:"Maniobra",q:"¿Cuál de estos rumbos es más orzado?",o:["Descuartelar","Través"],a:[0],x:"Descuartelar (~60-75°) está más orzado que el través (~90°)."},
+{id:"g28",c:"Maniobra",q:"En un barco balanceado, la mayor hace que el barco tienda a…",o:["Orzar","Derivar"],a:[0],x:"La mayor produce tendencia a orzar. El foque produce tendencia a derivar."},
+{id:"g29",c:"Maniobra",q:"Estamos ciando: si queremos que la proa caiga a estribor, ¿hacia dónde hay que mover la caña?",o:["Estribor","Babor","Esa maniobra no es posible"],a:[0],x:"Ciando, la caña se mueve hacia el mismo lado al que se quiere que caiga la proa."},
+{id:"g30",c:"Maniobra",q:"¿Cuándo tomaría un rizo?",o:["Con 4 nudos de viento","Cuando hay mucha corriente","Cuando el barco está sobrado de potencia","Cuando navegamos de popa"],a:[2],x:"Se toma un rizo cuando el barco está sobrado de potencia vélica."},
+{id:"g31",c:"Maniobra",q:"Defina acuartelar",o:["Cazar una vela por el lado de barlovento","Tocar una embarcación con otra, embestirla","Colocar una embarcación al lado de otra o de un muelle"],a:[0],x:"Acuartelar es cazar una vela por la banda de barlovento."},
+{id:"g32",c:"Maniobra",q:"Defina amainar",o:["Es cuando calma el viento","Es cuando se prepara el barco para una tormenta","Es cazar una vela más de lo necesario"],a:[0],x:"Amainar es cuando el viento disminuye su intensidad."},
+{id:"g34",c:"Maniobra",q:"Defina gualdrapear",o:["Es orzar más que una ceñida","Es cuando una vela no está cazada correctamente y flamea","Es cazar una vela por la banda de barlovento"],a:[1],x:"Gualdrapear es cuando una vela flamea por no estar correctamente cazada."},
+{id:"g58",c:"Maniobra",q:"¿Qué es estar al garete?",o:["Estar fondeado","Estar a merced del viento y la corriente","Ponerse a navegar hacia atrás"],a:[1],x:"Estar al garete (algarete) es estar sin gobierno, a merced del viento y la corriente."},
+{id:"g98",c:"Maniobra",q:"¿Qué es el viento aparente?",o:["El viento de la predicción meteorológica","La suma vectorial del viento real y la velocidad del barco"],a:[1],x:"El viento aparente es la combinación del viento real y el viento generado por el movimiento del barco."},
+// RIPA
+{id:"g02",c:"RIPA",q:"Un barco navega amurado a estribor con rumbo de colisión con un barco amurado a babor. ¿Quién tiene derecho de paso?",o:["El amurado a babor","El amurado a estribor","Ambos","Ninguno"],a:[1],x:"Con amuras distintas, el amurado a estribor tiene preferencia."},
+{id:"g03",c:"RIPA",q:"¿Se puede virar por avante sin pasar la proa por el viento?",o:["Sí","No","Depende"],a:[1],x:"No. Virar por avante es, por definición, pasar la proa por el viento."},
+{id:"g04",c:"RIPA",q:"Un velero, que navega a 5 nudos, alcanza por popa a una lancha que navega a 3 nudos. ¿Tiene derecho de paso?",o:["Sí","No"],a:[1],x:"No. El barco alcanzante NUNCA tiene derecho de paso."},
+{id:"g06",c:"RIPA",q:"Dos veleros navegan con la misma amura: uno por la aleta y otro en ceñida. ¿Cuál tiene derecho de paso?",o:["El que navega en ceñida","El que navega en aleta","El que esté amurado a estribor","El que no lleve spinnaker"],a:[1],x:"Con iguales amuras, el barco de sotavento tiene prioridad."},
+{id:"g07",c:"RIPA",q:"Barco B amurado a babor con spinnaker en colisión con barco E amurado a estribor con mayor y genoa. ¿Qué deben hacer?",o:["E y B deben mantener sus rumbos","B debe esquivar a E y E debe mantener su rumbo","B debe mantener su rumbo y E debe esquivar a B"],a:[1],x:"Amuras distintas: estribor (E) tiene prioridad. El spinnaker NO cambia las reglas."},
+{id:"g19",c:"RIPA",q:"¿Qué obligaciones tiene un barco con derecho de paso?",o:["Mantener su rumbo","Ninguna","Mantener su rumbo salvo que sea evidente que el otro no evitará la colisión","Reducir su velocidad"],a:[2],x:"Debe mantener rumbo y velocidad, EXCEPTO cuando sea evidente que el otro no maniobra."},
+{id:"g60",c:"RIPA",q:"Si ve una luz roja, blanca y verde que no destellan, ¿puede tratarse de un velero?",o:["Sí","No","No, se trata seguro de un canal"],a:[0],x:"Sí. Un velero puede mostrar luces separadas (roja, verde) más luz de alcance (blanca)."},
+{id:"g61",c:"RIPA",q:"Vemos una persona en el agua en serio riesgo y hay otro velero más cerca. ¿Podemos seguir nuestra derrota?",o:["No. Debo prestar toda la ayuda que me sea posible","Depende de mi criterio","No es problema mío"],a:[0],x:"Todo navegante tiene la obligación de prestar ayuda a quien esté en peligro en el agua."},
+{id:"g62",c:"RIPA",q:"¿Un H19 requiere indefectiblemente luces de posición para navegar de noche?",o:["No. Siendo su eslora menor a 7 metros, solo requiere una linterna, pero es recomendable que las lleve","Sí. Es necesario y obligatorio"],a:[0],x:"Un velero menor a 7 metros puede utilizar una linterna en lugar de luces reglamentarias."},
+{id:"g63",c:"RIPA",q:"De noche ve tres luces fijas todo horizonte superpuestas: rojas las extremas y blanca la central. ¿Qué está viendo?",o:["Un buque pescando","Un velero navegando hacia usted","Un barco con maniobra restringida","Un buque varado","Ninguna de las anteriores"],a:[2],x:"Roja-Blanca-Roja en vertical = buque con maniobra restringida."},
+{id:"g68",c:"RIPA",q:"Ve una luz roja y una verde que no destellan. ¿Cuál de las siguientes afirmaciones NO es correcta?",o:["Es un buque o velero que no se mueve","Es un velero moviéndose","Es algo que se aleja de mí","Es algo que se aproxima a mí","a y c son correctas","b y d son correctas"],a:[2],x:"Si se alejara veríamos la luz de alcance (blanca), no roja y verde."},
+{id:"g100",c:"RIPA",q:"La expresión en navegación se aplica a un buque que:",o:["No está fondeado","No está amarrado a tierra","No está varado","Todas las anteriores"],a:[3],x:"En navegación = no fondeado, ni amarrado, ni varado."},
+{id:"g101",c:"RIPA",q:"Observamos un barco con tres marcas en línea vertical: balón, bicono, balón. Se trata de:",o:["Un buque dragaminas, dragando","Un buque sin gobierno","Un buque varado","Un buque con capacidad de maniobra restringida"],a:[3],x:"Balón-Bicono-Balón = buque con maniobra restringida."},
+{id:"g103b",c:"RIPA",q:"De noche, un buque muestra dos luces rojas en vertical más las de navegación. Se trata de:",o:["Remolcador remolcando","Buque sin gobierno","Pesquero arrastrero","Velero con eslora de más de 24 metros"],a:[1],x:"Dos luces rojas todo horizonte en vertical = buque sin gobierno."},
+{id:"g104",c:"RIPA",q:"Dos esferas negras izadas en vertical en un buque significan:",o:["Buque remolcando","Buque pescando","Buque varado","Buque sin gobierno"],a:[3],x:"Dos esferas negras = buque sin gobierno (de día)."},
+// IALA
+{id:"g64",c:"IALA",q:"Remontando un canal en Argentina, ¿de qué banda quedan las luces rojas?",o:["Babor","Estribor","Depende de quién diseñó el canal"],a:[1],x:"Argentina: IALA Región B. Entrando Rojo Estribor (ERE)."},
+{id:"g65",c:"IALA",q:"¿Cambia si estuviera en Europa?",o:["Sí. Se invierten los colores","No. ¿Por qué habría de cambiar?","Mmmm, no sé… cosa de los europeos"],a:[0],x:"Europa usa IALA Región A: colores laterales invertidos."},
+{id:"g66",c:"IALA",q:"Navega con rumbo norte y ve una luz de 9 destellos cortos. ¿Puede seguir con seguridad?",o:["Veo una boya de peligro aislado. Debo apartarme","Veo una boya cardinal sur. Puedo navegar con seguridad","Veo una boya cardinal oeste. Puedo seguir dejándola por estribor","Veo una boya cardinal este. Puedo seguir dejándola por babor","Veo una boya de aguas seguras. Puedo seguir","Es un buque / Ninguna de las anteriores"],a:[2],x:"9 destellos = cardinal OESTE (reloj: W=9). Agua segura al oeste de la boya."},
+{id:"g67",c:"IALA",q:"Navega con rumbo norte y ve destellos cortos continuos. ¿Puede seguir con seguridad?",o:["Veo una boya de peligro aislado. Debo apartarme","Veo una boya cardinal norte. Puedo navegar con seguridad","Veo una boya cardinal oeste. Puedo seguir mi camino","Veo una boya cardinal este. Debo desviarme a babor","Veo una boya de aguas seguras. Puedo seguir","Es un buque / Ninguna de las anteriores"],a:[1],x:"Destellos continuos = cardinal NORTE (reloj: N=12=continuo). Agua segura al norte."},
+{id:"g69",c:"IALA",q:"¿Cómo está pintada una boya de peligro aislado?",o:["Blanca y Roja","Blanca y Negra","Roja y Negra","Roja y Verde"],a:[2],x:"Peligro aislado: franjas horizontales NEGRA y ROJA. Marca de tope: dos esferas negras."},
+{id:"g70",c:"IALA",q:"¿Qué marca de tope tiene una boya de peligro aislado?",o:["Una esfera negra","Dos esferas negras","Un cuadrado negro","Un triángulo rojo","Depende de IALA A o IALA B"],a:[1],x:"Peligro aislado: dos esferas negras. Luz: 2 destellos."},
+// MAREAS
+{id:"g42",c:"Mareas",q:"Si la altura de marea es 0,3 m y el sondaje es 2 m, ¿cuál es la profundidad?",o:["2 metros","2,3 metros","1,7 metros","0,3 metros","No se puede determinar"],a:[1],x:"Profundidad = Sondaje + Altura de marea = 2 + 0,3 = 2,3 m."},
+{id:"g43",c:"Mareas",q:"Si la profundidad es 19 m y el sondaje es 17 m, ¿cuál es la altura de marea?",o:["19 metros","17 metros","36 metros","-2 metros","2 metros","No se puede determinar"],a:[4],x:"Altura de marea = Profundidad − Sondaje = 19 − 17 = 2 m."},
+{id:"g44",c:"Mareas",q:"¿Qué significa un sondaje negativo en una carta?",o:["Que en ese lugar hay suficiente agua para navegar","Que en ese lugar, cuando se está al Cero, aflora el fondo"],a:[1],x:"Sondaje negativo = al cero de la carta, el fondo aflora."},
+{id:"g45",c:"Mareas",q:"¿Qué es la pleamar?",o:["El momento de máxima altura de marea","El momento de mínima altura de marea","La diferencia entre máxima y mínima altura","El período entre máxima y mínima altura"],a:[0],x:"Pleamar = máxima altura de marea."},
+{id:"g46",c:"Mareas",q:"¿Para qué sirve la regla del duodécimo?",o:["Para estimar la altura de marea entre una pleamar y una bajamar sucesivas","Para estimar el tiempo que durará un ciclo de marea","Para determinar el factor climático en el cálculo de profundidad"],a:[0],x:"La regla de los duodécimos (1-2-3-3-2-1) estima la altura de marea entre pleamar y bajamar."},
+{id:"g47",c:"Mareas",q:"¿Qué es el plano de reducción de sondajes (PRS)?",o:["Promedio de las más altas pleamares en un ciclo de Metón","Promedio de las más bajas bajamares en un ciclo de Metón","Promedio de todas las mareas en un período extenso"],a:[1],x:"El PRS surge de las más bajas bajamares durante un ciclo de Metón (19 años)."},
+{id:"g51",c:"Mareas",q:"Profundidad es igual a:",o:["Sondaje − altura de marea","Sondaje + altura de marea","Altura de marea + diferencia pleamar/bajamar","Depende de la fase de la Luna"],a:[1],x:"Profundidad = Sondaje + Altura de marea."},
+{id:"g52",c:"Mareas",q:"¿Qué influye en las mareas?",o:["La Luna","La dirección del viento que sopla","Las olas"],a:[0],x:"Las mareas son causadas por la atracción gravitatoria de la Luna (y del Sol)."},
+{id:"g53",c:"Mareas",q:"Una marea de sicigia es cuando:",o:["Hay Cuarto Menguante","Hay Cuarto Creciente","Hay Luna Llena o Nueva","Hay Cuarto Menguante o Creciente"],a:[2],x:"Sicigia = Luna Llena o Nueva. Mareas de mayor amplitud."},
+{id:"g54",c:"Mareas",q:"Una marea de cuadratura es cuando:",o:["Hay Luna Llena o Luna Nueva","Hay Cuarto Menguante o Creciente"],a:[1],x:"Cuadratura = Cuartos. Mareas de menor amplitud."},
+{id:"g55",c:"Mareas",q:"Las mareas de sicigia implican:",o:["Mayores amplitudes de marea","Menores amplitudes de marea","Períodos más largos de marea"],a:[0],x:"Sicigia = fuerzas gravitatorias sumadas = mayores amplitudes."},
+{id:"g77",c:"Mareas",q:"¿Qué es la estoa?",o:["Pieza de metal del puño de driza de las mayores","La diferencia entre LOA y LWL","La pieza donde se apoya el mástil","El intervalo en que la marea ni sube ni baja"],a:[3],x:"La estoa es el período donde la marea permanece estacionaria."},
+{id:"g78",c:"Mareas",q:"Vientos del N al SW, ¿qué impacto tienen en la altura de marea predicha?",o:["Las aumentan","Las reducen","No las afectan"],a:[1],x:"Los vientos del N, NNE, NE, SO, OSO, O, ONO, NO, NNO RESTAN al valor tabulado."},
+{id:"g79",c:"Mareas",q:"Vientos del NE al S, ¿qué impacto tienen en la altura de marea predicha?",o:["Las aumentan","Las reducen","No las afectan"],a:[0],x:"Los vientos del ENE, E, ESE, SE, SSE, S, SSO SUMAN al valor tabulado."},
+{id:"g105",c:"Mareas",q:"¿Qué significa marea predicha?",o:["Altura de marea calculada considerando efectos climáticos","Altura de marea calculada únicamente con efectos astronómicos","Ninguna de las anteriores"],a:[1],x:"La marea predicha considera solo efectos gravitatorios del Sol y la Luna, sin factor meteorológico."},
+// NAVEGACIÓN
+{id:"g48",c:"Navegación",q:"Declinación Magnética 8° W, Rv 180°. ¿Cuál es el Rumbo Magnético?",o:["180°","188°","172°","Ninguno de los anteriores","No se puede determinar"],a:[1],x:"Dm W: Rm = Rv + Dm → 180 + 8 = 188°."},
+{id:"g49",c:"Navegación",q:"Declinación Magnética 8° E, Rv 180°. ¿Cuál es el Rumbo Magnético?",o:["180°","188°","172°","Ninguno de los anteriores","No se puede determinar"],a:[2],x:"Dm E: Rm = Rv − Dm → 180 − 8 = 172°."},
+{id:"g50",c:"Navegación",q:"El valor de una marcación tomada con una pínula es:",o:["Magnético","Verdadero"],a:[0],x:"La pínula usa el compás magnético, la marcación es magnética."},
+{id:"g56",c:"Navegación",q:"El efecto de la corriente sobre la derrota se llama:",o:["Rolido","Deriva","Abatimiento","Ninguna de estas opciones"],a:[1],x:"Corriente = DERIVA. Viento = ABATIMIENTO."},
+{id:"g71",c:"Navegación",q:"¿Qué elemento se usa para medir la presión atmosférica?",o:["Un barómetro","Una pínula","Un anemómetro","Una corredera"],a:[0],x:"El barómetro mide presión atmosférica."},
+{id:"g72",c:"Navegación",q:"¿Qué es un waypoint?",o:["Mi velocidad según el GPS","La derrota","Un punto determinado por latitud y longitud"],a:[2],x:"Un waypoint es un punto definido por coordenadas de latitud y longitud."},
+{id:"g73",c:"Navegación",q:"¿Cuál es la diferencia entre ruta y track?",o:["El track es el camino por el que quiero ir y la derrota mi ruta","El track es el camino que hace el barco y la ruta es por donde quiero ir","Son sinónimos"],a:[1],x:"Ruta = camino planificado. Track = camino real recorrido."},
+{id:"g74",c:"Navegación",q:"¿Qué es la derrota?",o:["El camino por el que quiero ir con el barco","El camino que realmente realiza el barco"],a:[0],x:"La derrota es el camino planificado. El track es el camino real."},
+{id:"g75",c:"Navegación",q:"¿Qué es una marcación tomada con una pínula?",o:["Ángulo entre la proa del barco y la estela","Ángulo entre la línea de crujía y un punto notorio","Ángulo entre el Norte Magnético y un punto notorio"],a:[2],x:"Marcación con pínula = ángulo desde el Norte Magnético al objeto observado."},
+{id:"g83",c:"Navegación",q:"¿Qué es el abatimiento?",o:["Desviación provocada por la corriente","Desviación provocada por el viento"],a:[1],x:"Abatimiento = desviación lateral causada por el viento. Corriente = DERIVA."},
+{id:"g89",c:"Navegación",q:"¿A cuánto equivale una milla náutica?",o:["1.609 metros","2,5 kilómetros","1.852 metros","4 kilómetros"],a:[2],x:"1 milla náutica = 1.852 metros = 1 minuto de latitud."},
+{id:"g93",c:"Navegación",q:"En la carta Mercator, ¿cuál es la equivalencia entre distancia y latitud?",o:["Una milla es un minuto de latitud y se mide en el apartado de los meridianos","Una milla es un minuto de latitud y se mide en el apartado de los paralelos"],a:[0],x:"1 milla = 1 minuto de latitud. Se mide en la escala lateral (meridianos)."},
+{id:"g96",c:"Navegación",q:"¿Cómo se denomina el dispositivo para indicar la dirección del viento?",o:["Anemómetro","Holómetro","Veleta","Tacómetro"],a:[2],x:"Veleta = dirección del viento. Anemómetro = velocidad del viento."},
+{id:"g102",c:"Navegación",q:"¿Cómo se llama el ángulo entre el Norte Magnético y el Norte Verdadero?",o:["Declinación magnética","Corrección total","Deriva"],a:[0],x:"Declinación magnética = ángulo entre Norte Verdadero y Norte Magnético."},
+// METEOROLOGÍA
+{id:"m01",c:"Meteorología",q:"En un anticiclón los vientos…",o:["Salen en sentido horario","Salen en sentido antihorario","Entran en sentido horario","Entran en sentido antihorario"],a:[1],x:"Hemisferio sur: vientos SALEN del anticiclón en sentido ANTIHORARIO."},
+{id:"m02",c:"Meteorología",q:"Los cirrus son nubes:",o:["Altas","Bajas","Medias","De desarrollo vertical"],a:[0],x:"Los cirrus son nubes ALTAS (>6.000 m), de cristales de hielo."},
+{id:"m03",c:"Meteorología",q:"Las nubes se clasifican según qué factores:",o:["Su altura","Su color","Su forma"],a:[0,2],m:1,x:"Las nubes se clasifican según ALTURA y FORMA."},
+{id:"m04",c:"Meteorología",q:"¿De qué sector proviene el Pampero?",o:["NO (Noroeste)","NE (Noreste)","SW (Sudoeste)","SE (Sudeste)"],a:[2],x:"El Pampero llega del SUDOESTE (SW)."},
+{id:"m06",c:"Meteorología",q:"¿Una nube tipo yunque es peligrosa?",o:["Sí","No","No existe tal tipo de nube"],a:[0],x:"Nube yunque = cumulonimbus maduro, asociado a tormentas severas."},
+{id:"m07",c:"Meteorología",q:"¿Una nube tipo cirrus es peligrosa?",o:["Sí","No","No existe tal tipo de nube"],a:[1],x:"Los cirrus no son peligrosos por sí solos."},
+{id:"m08",c:"Meteorología",q:"¿Qué son las isobaras?",o:["Puntos de igual altura","Puntos de igual presión atmosférica","Puntos de igual temperatura","Puntos de igual humedad relativa"],a:[1],x:"Las isobaras unen puntos de igual presión atmosférica."},
+{id:"m09",c:"Meteorología",q:"¿Dónde habrá viento más intenso?",o:["Donde las isobaras están más comprimidas","Donde las isobaras están más separadas","Ninguna de las anteriores"],a:[0],x:"Isobaras juntas = mayor gradiente = viento más intenso."},
+{id:"m10",c:"Meteorología",q:"¿Qué es el cigarro?",o:["Nube asociada a buen tiempo","Nube asociada a lluvias intensas","Nube asociada a una nube de peligroso desarrollo vertical"],a:[2],x:"El cigarro (nube rollo) precede al Pampero. Señal de tormenta inminente."},
+// COMUNICACIONES
+{id:"g39",c:"Comunicaciones",q:"¿Cuál es el canal internacional para pedir auxilio por VHF?",o:["10","12","16"],a:[2],x:"Canal 16 = canal internacional de socorro, seguridad y llamada."},
+{id:"g40",c:"Comunicaciones",q:"¿Cuál es el canal utilizado por CUBA VHF?",o:["10","14","18","66"],a:[0],x:"COSTERA CUBA opera en Canal 10 (Modo USA)."},
+{id:"g41",c:"Comunicaciones",q:"¿Qué se transmite para pedir auxilio con riesgo de vida por radio?",o:["Pan Pan Pan","Securité","Mayday Mayday Mayday","SOS","Socorro"],a:[2],x:"MAYDAY = peligro inminente con riesgo de vida."},
+{id:"g86",c:"Comunicaciones",q:"En el código Q, ¿qué significa QSL?",o:["Estoy atento","Necesito ayuda","Comprendido","¿Cuál es su rumbo?"],a:[2],x:"QSL = Comprendido / Acuso recibo."},
+{id:"g87",c:"Comunicaciones",q:"¿Qué significa QAP en el código Q?",o:["Estoy atento","Necesito ayuda","Comprendido","¿Cuál es su rumbo?"],a:[0],x:"QAP = Estoy atento / Manténgase a la escucha."},
+// FONDEO Y SEGURIDAD
+{id:"g09",c:"Fondeo",q:"¿Cuánto cabo de fondeo debe largarse en condiciones normales?",o:["De 3 a 5 veces la eslora del barco","De 3 a 5 veces la profundidad del lugar"],a:[1],x:"Se largan de 3 a 5 veces la PROFUNDIDAD."},
+{id:"g57",c:"Fondeo",q:"¿En qué tipo de motor es fundamental ventilar bien el interior antes de prenderlo?",o:["Diésel","Naftero"],a:[1],x:"El motor naftero produce vapores EXPLOSIVOS. Ventilar sentina antes de arrancarlo."},
+{id:"g59",c:"Fondeo",q:"¿Qué significa que el fondeo garrea?",o:["Que el ancla no puede ser liberada del fondo","Que el ancla no logra mantener al barco en el lugar elegido","Que se enredó con la cadena o cabo de fondeo"],a:[1],x:"Garrear = el ancla no se aferra y se arrastra."},
+{id:"g84",c:"Fondeo",q:"¿Cuál es el tipo de fondeo más utilizado en nuestra margen del Río de la Plata?",o:["Cepo o almirantazgo","Danforth","Arado","Bruce"],a:[1],x:"El ancla Danforth es una de las más usadas en el Río de la Plata."},
+{id:"g85",c:"Fondeo",q:"¿Cuál de los siguientes NO es un tipo de fondeo?",o:["Cepo o almirantazgo","Danforth","Arado","Spring"],a:[3],x:"Spring es una amarra, no un tipo de ancla."},
+{id:"g103a",c:"Fondeo",q:"¿Cuáles son los principales usos de un ancla de mar?",o:["Fondear la embarcación","Sustituir el ancla tradicional provisoriamente","Mantener velocidad constante en mal tiempo","Aguantar la embarcación de proa o popa a la mar en mal tiempo"],a:[3],x:"El ancla de mar se usa en mal tiempo para mantener orientación proa o popa al mar."},
+// ABIERTAS
+{id:"ab01",c:"Abiertas",q:"¿Para qué sirve ponerse a la capa?",t:1,r:"Mantener la embarcación relativamente estática en mal tiempo, reduciendo la deriva y evitando navegar contra las olas. Permite descansar a la tripulación."},
+{id:"ab02",c:"Abiertas",q:"¿Cómo se pone un barco a la capa?",t:1,r:"Se acuartela la vela de proa, se fila la mayor con rizos, y se pone el timón a barlovento. No se puede capear con tierra a sotavento."},
+{id:"ab03",c:"Abiertas",q:"¿Cómo se toma un rizo?",t:1,r:"Proa al viento, se baja parcialmente la mayor, se fija el puño de amura del rizo en el pinzote, se tensa el pujamen con la salida del rizo, y se atan los matafiones."},
+{id:"ab04",c:"Abiertas",q:"¿De qué manera reduciría la potencia vélica sin tomar rizos?",t:1,r:"Cambiar a velas más chicas, enrollar parcialmente la vela de proa, arriar el spinnaker, o navegar solo con mayor o solo con foque."},
+{id:"ab05",c:"Abiertas",q:"¿Cómo se debe cruzar el canal Mitre?",t:1,r:"De forma perpendicular al canal, ocupándolo el menor tiempo posible."},
+{id:"ab06",c:"Abiertas",q:"¿Qué es la escala Beaufort?",t:1,r:"Escala de 0 a 12 que clasifica la intensidad del viento según efectos observables. De calma (0) a huracán (12)."},
+{id:"ab07",c:"Abiertas",q:"¿Qué es navegar a palo seco?",t:1,r:"Navegar sin velas izadas, solo con el impulso del viento sobre la arboladura y casco. Se usa en temporal extremo."},
+{id:"ab08",c:"Abiertas",q:"¿Qué es irse por ojo?",t:1,r:"La proa se clava en la ola de adelante por exceso de velocidad al correr un temporal. Riesgo de broach (quedar cruzado). Se previene con ancla de mar por popa."},
+{id:"ab09",c:"Abiertas",q:"¿Qué es correr un temporal?",t:1,r:"Navegar de popa al viento y las olas. Se puede correr a palo seco, con estachas o ancla de mar por popa."},
+{id:"ab10",c:"Abiertas",q:"¿Cuál es el tipo de fondo en la costa de Buenos Aires?",t:1,r:"Fango (barro). Apto para anclas tipo Danforth."},
+{id:"ab11",c:"Abiertas",q:"¿Para qué sirve la cadena en un fondeo?",t:1,r:"Su peso ayuda a que el ancla trabaje horizontal, mejorando el agarre. Reduce el ángulo de tiro y absorbe tirones."},
+{id:"ab12",c:"Abiertas",q:"¿Qué es el francobordo?",t:1,r:"Altura de la obra muerta respecto del agua. Distancia vertical entre la línea de flotación y la cubierta."},
+{id:"ab13",c:"Abiertas",q:"¿Diferencia entre un barco lanzado y uno que no lo es?",t:1,r:"Un barco lanzado tiene diferencia significativa entre LOA y LWL. Los lanzamientos son las extensiones de proa y popa que sobresalen de la flotación."},
+{id:"ab14",c:"Abiertas",q:"¿Qué es el arrufo?",t:1,r:"Curvatura longitudinal de la cubierta. El arrufo normal hace que la cubierta sea más alta en proa y popa que en el centro."},
+{id:"ab15",c:"Abiertas",q:"¿Qué es el puntal?",t:1,r:"Altura interior del casco medida en el plano de crujía, sin pisos ni superestructura. Se mide desde la sentina."},
+{id:"ab16",c:"Abiertas",q:"¿Qué es el calado?",t:1,r:"Distancia vertical desde la línea de flotación al extremo inferior del quillote u orza. El H19 tiene 90 cm de calado."},
+{id:"ab17",c:"Abiertas",q:"¿Qué es el Código Q?",t:1,r:"Abreviaturas de tres letras (Q…) usadas en comunicaciones de radio. QSL=comprendido, QAP=estoy atento, QTH=ubicación, QRZ=quién me llama."},
+{id:"ab18",c:"Abiertas",q:"¿Qué es la sección maestra?",t:1,r:"El plano que corta el barco transversalmente en la manga máxima."},
+{id:"ab19",c:"Abiertas",q:"¿Qué señales previas a la llegada de un Pampero se pueden identificar?",t:1,r:"Días de viento norte con presión bajando, nube cigarro (rollo), rotación del viento del norte al sudoeste, descenso brusco de temperatura y subida rápida de presión."},
+{id:"ab20",c:"Abiertas",q:"Formas de realizar la maniobra de hombre al agua",t:1,r:"1) Tirar salvavidas. 2) Designar vigía. 3) MOB en GPS. 4) Maniobrar para volver. 5) Aproximarse sin estropada. 6) Recuperar por sotavento. No perder de vista al MOB."},
+{id:"ab21",c:"Abiertas",q:"¿Cómo se fondea? ¿Qué variables se deben tener en cuenta?",t:1,r:"Variables: tipo de fondo, profundidad, protección del viento, espacio de borneo, corriente/marea. Proa al viento, largar cabo de a poco, 3-5 veces la profundidad, controlar que no garree."},
+{id:"ab22",c:"Abiertas",q:"¿Qué significa un borneo?",t:1,r:"1) Cambio de dirección del viento. 2) En fondeo: el círculo que describe el barco fondeado girando con el viento y corriente."},
+{id:"ab23",c:"Abiertas",q:"¿Qué significa se negó el viento?",t:1,r:"El viento roló hacia donde se quiere navegar, viniendo más de proa. Es lo opuesto a que el viento abra."},
+{id:"ab24",c:"Abiertas",q:"¿Qué variables tendría en cuenta para planear una salida de amarras?",t:1,r:"Dirección e intensidad del viento, corriente, profundidad, tráfico, estado del barco y velas, tripulación, rumbo de salida planificado."},
+{id:"ab25",c:"Abiertas",q:"¿Qué variables tendría en cuenta para sacar de varadura un velero?",t:1,r:"Estado de la marea, tipo de fondo, estado de apéndices, posibilidad de escorar, redistribución de peso, uso de drizas desde tierra, motor o velas."},
+{id:"ab26",c:"Abiertas",q:"¿Cuál debe ser su primera reacción al vararse?",t:1,r:"NO zafar inmediatamente. Verificar que la maniobra no producirá daños. Revisar apéndices. Evaluar fondo, marea, y extensión del banco."},
+{id:"ab27",c:"Abiertas",q:"¿Dónde se puede obtener tablas de alturas de marea?",t:1,r:"Servicio de Hidrografía Naval (hidro.gov.ar), app Mareas Argentinas, Radio Nacional, VHF Canal 15, costeras náuticas."},
+{id:"m05",c:"Abiertas",q:"Defina la diferencia entre Sudestada y Pampero desde la posición de los centros de Alta y Baja",t:1,r:"Sudestada: baja presión al norte/noreste, alta al sur → viento persistente del SE, progresiva. Pampero: alta presión del SW desplaza la baja → frente frío con rotación del N al SW, cambio brusco, nube cigarro."}
+];
+// ===== APP ENGINE (Vanilla JS) =====
+(function(){
+var $=document.getElementById.bind(document);
+var app=$('app');
+var state={cat:'Todas',mode:'quiz',qi:0,ans:{},sel:[],done:false,rev:{},shuf:{}};
+var CATS=[...new Set(Q.map(function(q){return q.c}))];
+
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+
+function filtered(){
+  var qs=state.cat==='Todas'?Q:Q.filter(function(q){return q.c===state.cat});
+  return qs;
+}
+function mcQs(qs){return qs.filter(function(q){return !q.t})}
+function stats(qs){
+  var mc=mcQs(qs),ok=0,wr=0;
+  mc.forEach(function(q){if(state.ans[q.id]===true)ok++;else if(state.ans[q.id]===false)wr++});
+  return{total:mc.length,ok:ok,wr:wr,pend:mc.length-ok-wr}
+}
+function getOrder(q){
+  if(!state.shuf[q.id]){state.shuf[q.id]=shuffle(q.o.map(function(_,i){return i}))}
+  return state.shuf[q.id];
+}
+function h(tag,cls,html,attrs){
+  var el=document.createElement(tag);
+  if(cls)el.className=cls;
+  if(html!=null)el.innerHTML=html;
+  if(attrs)Object.keys(attrs).forEach(function(k){
+    if(k==='onclick')el.addEventListener('click',attrs[k]);
+    else if(k==='disabled')el.disabled=attrs[k];
+    else el.setAttribute(k,attrs[k]);
+  });
+  return el;
+}
+function append(p){var els=[].slice.call(arguments,1);els.forEach(function(e){if(e)p.appendChild(e)});return p}
+
+function render(){
+  app.innerHTML='';
+  var qs=filtered(),s=stats(qs),pct=s.total?Math.round(((s.ok+s.wr)/s.total)*100):0;
+
+  // Header
+  append(app,h('h1','','Examen Timonel CUBA'));
+  append(app,h('div','sub','Guía de Preguntas 2025 · Puerto Núñez'));
+
+  // Results screen
+  if(state.mode==='results'){
+    var sc=s.total?Math.round((s.ok/s.total)*100):0;
+    var rc=h('div','card rc');
+    append(rc,h('div','sc',''+sc+'%'));
+    append(rc,h('div','sl','Resultado Final'));
+    var rb=h('div','rb');
+    var i1=h('div','it');append(i1,h('div','v',''+s.ok,{style:'color:var(--green)'}),h('div','k','Correctas'));
+    var i2=h('div','it');append(i2,h('div','v',''+s.wr,{style:'color:var(--red)'}),h('div','k','Incorrectas'));
+    var i3=h('div','it');append(i3,h('div','v',''+s.total,{style:'color:var(--text2)'}),h('div','k','Total'));
+    append(rb,i1,i2,i3);append(rc,rb);
+    append(rc,h('button','rstb','Reiniciar Quiz',{onclick:function(){state.ans={};state.sel=[];state.done=false;state.qi=0;state.mode='quiz';state.shuf={};state.rev={};render()}}));
+    append(app,rc);
+    append(app,h('div','ft','CUBA Puerto Núñez · Timonel de Vela y Motor 2025'));
+    return;
+  }
+
+  // Stats bar
+  var sb=h('div','sbar');
+  var s1=h('div','st ok');append(s1,h('div','n',''+s.ok),h('div','l','Correctas'));
+  var s2=h('div','st err');append(s2,h('div','n',''+s.wr),h('div','l','Incorrectas'));
+  var s3=h('div','st pn');append(s3,h('div','n',''+s.pend),h('div','l','Pendientes'));
+  append(sb,s1,s2,s3);append(app,sb);
+  // Progress
+  var pb=h('div','pbar');append(pb,h('div','pfill','',{style:'width:'+pct+'%'}));append(app,pb);
+  // Categories
+  var cats=h('div','cats');
+  append(cats,h('button','cb'+(state.cat==='Todas'?' on':''),'Todas <span class="cnt">('+Q.length+')</span>',{onclick:function(){state.cat='Todas';state.qi=0;state.sel=[];state.done=false;render()}}));
+  CATS.forEach(function(c){
+    var n=Q.filter(function(q){return q.c===c}).length;
+    append(cats,h('button','cb'+(state.cat===c?' on':''),c+' <span class="cnt">('+n+')</span>',{onclick:function(){state.cat=c;state.qi=0;state.sel=[];state.done=false;render()}}));
+  });
+  append(app,cats);
+  // Mode tabs
+  var tb=h('div','tabs');
+  append(tb,h('button','tab'+(state.mode==='quiz'?' on':''),'📝 Quiz',{onclick:function(){state.mode='quiz';render()}}));
+  append(tb,h('button','tab'+(state.mode==='list'?' on':''),'📋 Lista',{onclick:function(){state.mode='list';render()}}));
+  append(app,tb);
+
+  if(state.mode==='list'){
+    var ql=h('div','ql');
+    qs.forEach(function(q,idx){
+      var st=q.t?(state.rev[q.id]?'sn':'pd'):(state.ans[q.id]===true?'gd':state.ans[q.id]===false?'bd':'pd');
+      var ic=st==='gd'?'✓':st==='bd'?'✗':st==='sn'?'👁':'•';
+      var qi=h('div','qi','',{onclick:function(){state.qi=idx;state.sel=[];state.done=false;state.mode='quiz';render()}});
+      append(qi,h('div','ic '+st,ic),h('div','tx',q.q.length>90?q.q.substring(0,90)+'…':q.q),h('div','ar','›'));
+      append(ql,qi);
+    });
+    append(app,ql);
+  } else {
+    // Quiz mode
+    var cq=qs[state.qi];
+    if(!cq){append(app,h('div','ft','CUBA Puerto Núñez · Timonel de Vela y Motor 2025'));return}
+    var card=h('div','card'+(cq.t?' open-card':''));
+    var hdr=h('div','chdr');
+    append(hdr,h('span','qcat',cq.c),h('span','qnum',(state.qi+1)+'/'+qs.length));
+    append(card,hdr);
+    append(card,h('div','qtxt',cq.q));
+
+    if(cq.t){
+      // Open question
+      if(state.rev[cq.id]){
+        append(card,h('div','ans',cq.r));
+      }else{
+        append(card,h('button','rbtn','👁 Mostrar respuesta',{onclick:function(){state.rev[cq.id]=true;render()}}));
+      }
+    }else{
+      // MC question
+      if(cq.m)append(card,h('div','mhint','⚠ Seleccione TODAS las respuestas correctas'));
+      var opts=h('div','opts');
+      var order=getOrder(cq);
+      order.forEach(function(ri,di){
+        var txt=cq.o[ri];
+        var isSel=state.sel.indexOf(ri)>=0;
+        var isCorr=cq.a.indexOf(ri)>=0;
+        var letter=String.fromCharCode(65+di);
+        var cls='opt'+(cq.m?' mu':'')+(state.done?' dis':'');
+        var mk=letter;
+        if(state.done){
+          if(isCorr){cls+=' ok';mk='✓'}
+          else if(isSel&&!isCorr){cls+=' wr';mk='✗'}
+          else if(!isSel&&isCorr){cls+=' ms';mk='✓'}
+        }else{if(isSel){cls+=' sel'}}
+        var btn=h('button',cls,'',{onclick:function(){
+          if(state.done)return;
+          if(cq.m){var i=state.sel.indexOf(ri);if(i>=0)state.sel.splice(i,1);else state.sel.push(ri)}
+          else{state.sel=[ri]}
+          render();
+        }});
+        append(btn,h('span','mk',mk),h('span','',txt));
+        append(opts,btn);
+      });
+      append(card,opts);
+      // Confirm button
+      if(!state.done&&state.sel.length>0){
+        var br=h('div','brow');
+        append(br,h('button','btn bc','Confirmar',{onclick:function(){
+          var correct=cq.a.length===state.sel.length&&cq.a.every(function(c){return state.sel.indexOf(c)>=0});
+          state.ans[cq.id]=correct;state.done=true;render();
+        }}));
+        append(card,br);
+      }
+      // Explanation
+      if(state.done){
+        var isOk=state.ans[cq.id];
+        var partial=cq.m&&!isOk&&state.sel.some(function(s){return cq.a.indexOf(s)>=0});
+        var ec='exp '+(isOk?'eok':(partial?'epa':'eer'));
+        var icon=isOk?'✅':(partial?'⚠️':'❌');
+        var label=isOk?'¡Correcto!':(partial?'Incompleto':'Incorrecto');
+        append(card,h('div',ec,'<strong>'+icon+' '+label+'</strong> '+cq.x));
+      }
+    }
+    append(app,card);
+    // Nav buttons
+    var nav=h('div','brow');
+    append(nav,h('button','btn bs','← Anterior',{onclick:function(){if(state.qi>0){state.qi--;state.sel=[];state.done=false;render();window.scrollTo(0,0)}},disabled:state.qi===0}));
+    append(nav,h('button','btn bp',state.qi<qs.length-1?'Siguiente →':'Ver Resultado',{onclick:function(){
+      if(state.qi<qs.length-1){state.qi++;state.sel=[];state.done=false;render();window.scrollTo(0,0)}
+      else{state.mode='results';render();window.scrollTo(0,0)}
+    }}));
+    append(app,nav);
+    // Dots
+    var lo=Math.max(0,state.qi-10),hi=Math.min(qs.length,state.qi+11);
+    var dots=h('div','dots');
+    for(var i=lo;i<hi;i++){(function(idx){
+      var q2=qs[idx];
+      var ds=q2.t?(state.rev[q2.id]?'dg':'dp'):(state.ans[q2.id]===true?'dg':state.ans[q2.id]===false?'dr':'dp');
+      append(dots,h('button','dot '+ds+(idx===state.qi?' dc':''),'',{onclick:function(){state.qi=idx;state.sel=[];state.done=false;render();window.scrollTo(0,0)}}));
+    })(i)}
+    append(app,dots);
+  }
+  append(app,h('div','ft','CUBA Puerto Núñez · Timonel de Vela y Motor 2025'));
+}
+render();
+})();
+</script>
+</body>
+</html>
